@@ -1,5 +1,5 @@
-const { User } = require('../../models');
-const { signToken } = require('../../utils/auth')
+const { User } = require('../models');
+const { signToken } = require('../utils/auth')
 
 const resolvers = {
     Query: {
@@ -58,4 +58,4 @@ const resolvers = {
     },
 };
 
-module.exports = resolvers;
+module.exports = { resolvers };
