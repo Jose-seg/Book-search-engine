@@ -39,7 +39,11 @@ const resolvers = {
                     { $addToSet: { savedBooks: bookData } },
                     { new: true }
                 );
-                return updatedUser;
+                return {
+                    _id: updatedUser._id,
+                    username: updatedUser.username,
+                    savedBooks: updatedUser.savedBooks
+                }; 
             }
             throw new Error('You need to be logged in');
         },
@@ -51,7 +55,11 @@ const resolvers = {
                     { $pull: { savedBooks: { bookId } } },
                     { new: true }
                 );
-                return updatedUser;
+                return {
+                    _id: updatedUser._id,
+            username: updatedUser.username,
+            savedBooks: updatedUser.savedBooks
+                }
             }
             throw new Error('You need to be logged in!');
         },

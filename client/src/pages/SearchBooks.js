@@ -6,13 +6,6 @@ import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { SAVE_BOOK } from '../graphql/mutations';
 
-// Here I define SAVE_BOOK mutation here using gql
-const SAVE_BOOK = gql`
-  mutation saveBook($input: SaveBookInput) {
-    saveBook(input: $input) {
-    }
-  }
-`;
 
 const SearchBooks = () => {
   // create state for holding returned google api data

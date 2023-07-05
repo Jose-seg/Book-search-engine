@@ -8,39 +8,14 @@ import {
 } from 'react-bootstrap';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import { removeBookId } from '../utils/localStorage';
-import { GET_ME, REMOVE_BOOK } from '../graphql/queries';
+import { GET_ME } from '../graphql/queries';
+import { REMOVE_BOOK } from '../graphql/mutations';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
   const [removeBook] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me || {};
-
-  // useEffect(() => {
-  //   const getUserData = async () => {
-  //     try {
-  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-  //       if (!token) {
-  //         return false;
-  //       }
-
-  //       const response = await getMe(token);
-
-  //       if (!response.ok) {
-  //         throw new Error('something went wrong!');
-  //       }
-
-  //       const user = await response.json();
-  //       setUserData(user);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   getUserData();
-  // }, [userDataLength]);
-
   
   const handleDeleteBook = async (bookId) => {
     try {
@@ -51,7 +26,6 @@ const SavedBooks = () => {
       const updatedUser = data.removeBook;
       // if successful, removes book's id from localstorage
       removeBookId(bookId);
-      setUserData(updatedUser);
     } catch (err) {
       console.error(err);
     }
